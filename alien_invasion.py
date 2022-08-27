@@ -13,9 +13,19 @@ class AlienInvasion:
         
         # Settings
         self.settings = Settings()
+        
+        # For fullscreen view
+        # self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
+        # self.settings.screen_width = self.screen.get_rect().width
+        # self.settings.screen_height = self.screen.get_rect().height
+        
+        # For windowed view
         self.screen = pygame.display.set_mode((self.settings.screen_width, self.settings.screen_height))
         # self.screen = pygame.display.set_mode((1200, 800))
+        
         pygame.display.set_caption("Alien Invasion v1.0")
+        
+        # Ship 
         self.ship = Ship(self)
         
         # Set the background color.
@@ -36,9 +46,9 @@ class AlienInvasion:
                 sys.exit()
             
             elif event.type == pygame.KEYDOWN:
-                self._key_down_events(event)
+                self._check_keydown_events(event)
             elif event.type == pygame.KEYUP:
-                self._key_up_events(event)
+                self._check_keyup_events(event)
             
              # elif event.key == pygame.K_w:
                 #     # Move the ship up.
@@ -47,7 +57,7 @@ class AlienInvasion:
                 #     # Move the ship down.
                 #     self.ship.rect.y += 10
             
-    def _key_down_events(self, event):
+    def _check_keydown_events(self, event):
         """Respond to keypasses"""
         if event.key == pygame.K_d:
             # Move the ship to the right.
@@ -55,8 +65,11 @@ class AlienInvasion:
         elif event.key == pygame.K_a:
             # Stop moving the ship to the right.
             self.ship.moving_left = True
+        elif event.key == pygame.K_q:
+            # Close the game with 'q'
+            sys.exit()
           
-    def _key_up_events(self, event):
+    def _check_keyup_events(self, event):
         """Respond to keypasses"""
         if event.key == pygame.K_d:
             # Move the ship to the left.
