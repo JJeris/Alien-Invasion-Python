@@ -36,29 +36,35 @@ class AlienInvasion:
                 sys.exit()
             
             elif event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_d:
-                    # Move the ship to the right.
-                    self.ship.moving_right = True
-                elif event.key == pygame.K_a:
-                    # Stop moving the ship to the right.
-                    self.ship.moving_left = True
+                self._key_down_events(event)
             elif event.type == pygame.KEYUP:
-                if event.key == pygame.K_d:
-                    # Move the ship to the left.
-                    self.ship.moving_right = False
-                elif event.key == pygame.K_a:
-                    # Stop moving the ship to the left.
-                    self.ship.moving_left = False
-                
-           
-           
-                # elif event.key == pygame.K_w:
+                self._key_up_events(event)
+            
+             # elif event.key == pygame.K_w:
                 #     # Move the ship up.
                 #     self.ship.rect.y -= 10
                 # elif event.key == pygame.K_s:
                 #     # Move the ship down.
                 #     self.ship.rect.y += 10
-        
+            
+    def _key_down_events(self, event):
+        """Respond to keypasses"""
+        if event.key == pygame.K_d:
+            # Move the ship to the right.
+            self.ship.moving_right = True
+        elif event.key == pygame.K_a:
+            # Stop moving the ship to the right.
+            self.ship.moving_left = True
+          
+    def _key_up_events(self, event):
+        """Respond to keypasses"""
+        if event.key == pygame.K_d:
+            # Move the ship to the left.
+            self.ship.moving_right = False
+        elif event.key == pygame.K_a:
+            # Stop moving the ship to the left.
+            self.ship.moving_left = False
+               
     def _update_screen(self):
         """Update images on the screen, and flip to the new screen."""
         # Redraw the screen during each pass thorugh the loop.
