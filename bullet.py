@@ -18,7 +18,7 @@ class Bullet(Sprite):
         self.y = float(self.rect.y)
 
         
-        # Movement flags
+        # Movement flags (Not yet implemanted)
         # self.moving_up = False
         
     def update(self):
@@ -28,8 +28,9 @@ class Bullet(Sprite):
         
         # Update the rect position (decimal->int).
         self.rect.y = self.y
-        
-        
+        # if self.moving_up:
+        #     self.y -= self.settings.bullet_speed
+        # self.rect.y = self.y
         
         
     def draw_bullet(self):
